@@ -76,64 +76,63 @@ footer{
     margin-top:40px;
 }
 </style>
-
 </head>
+
 <body>
 
 <header>
-<h1>Z3p VTC</h1>
-<p>Virtuelle Trucking Company auf TruckersMP</p>
+    <h1>Z3p VTC</h1>
+    <p>Virtuelle Trucking Company auf TruckersMP</p>
 </header>
 
 <nav>
-<a href="#home">Start</a>
-<a href="#about">Über uns</a>
-<a href="#drivers">Fahrer</a>
-<a href="#join">Beitreten</a>
+    <a href="#home">Start</a>
+    <a href="#about">Über uns</a>
+    <a href="#drivers">Fahrer</a>
+    <a href="#join">Beitreten</a>
 </nav>
 
 <section id="home">
-<h2>Willkommen bei Z3p VTC</h2>
-<div class="card">
-<p>
-Willkommen bei der Z3p VTC!  
-Wir sind eine virtuelle Spedition auf TruckersMP und fahren gemeinsam Konvois,
-Events und Lieferungen durch ganz Europa.
-</p>
-</div>
+    <h2>Willkommen bei Z3p VTC</h2>
+    <div class="card">
+        <p>
+        Willkommen bei der Z3p VTC! Wir sind eine virtuelle Spedition auf TruckersMP
+        und fahren gemeinsam Konvois, Events und Lieferungen durch ganz Europa.
+        </p>
+    </div>
 </section>
 
 <section id="about">
-<h2>Über unsere VTC</h2>
-<div class="card">
-<p>
-Unsere VTC wurde gegründet, um gemeinsam Spaß im Multiplayer von Euro Truck Simulator zu haben.
-Wir organisieren regelmäßige Fahrten und Events.
-</p>
-</div>
+    <h2>Über unsere VTC</h2>
+    <div class="card">
+        <p>
+        Unsere VTC wurde gegründet, um gemeinsam Spaß im Multiplayer von Euro Truck Simulator zu haben.
+        Wir organisieren regelmäßige Fahrten und Events.
+        </p>
+    </div>
 </section>
 
 <section id="drivers">
-<h2>Unsere Fahrer</h2>
-<div class="card">
-<ul>
-<li>Jannik</li>
-<li>Timnik</li>
-<li>Weitere Fahrer folgen...</li>
-</ul>
-</div>
+    <h2>Unsere Fahrer</h2>
+    <div class="card">
+        <ul>
+            <li>Jannik</li>
+            <li>Timnik</li>
+            <li>Weitere Fahrer folgen...</li>
+        </ul>
+    </div>
 </section>
 
 <section id="join">
-<h2>Jetzt beitreten</h2>
-<div class="card">
-<p>Möchtest du Teil der Z3p VTC werden?</p>
-<button onclick="alert('Kontaktiere uns auf Discord!')">Jetzt Bewerben</button>
-</div>
+    <h2>Jetzt beitreten</h2>
+    <div class="card">
+        <p>Möchtest du Teil der Z3p VTC werden?</p>
+        <button onclick="alert('Kontaktiere uns auf Discord!')">Jetzt Bewerben</button>
+    </div>
 </section>
 
 <footer>
-<p>© 2026 Z3p VTC | TruckersMP VTC</p>
+    <p>© 2026 Z3p VTC | TruckersMP VTC</p>
 </footer>
 
 </body>
