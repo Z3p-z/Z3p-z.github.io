@@ -1,139 +1,98 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Z3p VTC - TruckersMP</title>
-
-<style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:white;
-}
-
-header{
-    background:#020617;
-    padding:20px;
-    text-align:center;
-}
-
-header h1{
-    margin:0;
-    font-size:40px;
-    color:#22c55e;
-}
-
-nav{
-    background:#111827;
-    padding:10px;
-    text-align:center;
-}
-
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:#22c55e;
-}
-
-section{
-    padding:50px;
-    max-width:1000px;
-    margin:auto;
-}
-
-.card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:10px;
-    margin-top:20px;
-}
-
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:6px;
-    background:#22c55e;
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#16a34a;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    background:#020617;
-    margin-top:40px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Fun Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #ff6f61;
+      color: white;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    #fun-content {
+      margin: 40px 0;
+      text-align: center;
+    }
+    #fun-content img, #fun-content video {
+      max-width: 90vw;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    button {
+      background: #ff6f61;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff3b2e;
+    }
+    footer {
+      margin-top: 30px;
+      color: #555;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-    <h1>Z3p VTC</h1>
-    <p>Virtuelle Trucking Company auf TruckersMP</p>
+  <h1>🎉 Daily Fun Hub 🎉</h1>
+  <p>Get a random meme, video, or mini-game every day!</p>
 </header>
 
-<nav>
-    <a href="#home">Start</a>
-    <a href="#about">Über uns</a>
-    <a href="#drivers">Fahrer</a>
-    <a href="#join">Beitreten</a>
-</nav>
+<div id="fun-content">
+  <img src="https://i.imgur.com/1eI3H1M.jpg" alt="Fun Meme" id="fun-media">
+</div>
 
-<section id="home">
-    <h2>Willkommen bei Z3p VTC</h2>
-    <div class="card">
-        <p>
-        Willkommen bei der Z3p VTC! Wir sind eine virtuelle Spedition auf TruckersMP
-        und fahren gemeinsam Konvois, Events und Lieferungen durch ganz Europa.
-        </p>
-    </div>
-</section>
-
-<section id="about">
-    <h2>Über unsere VTC</h2>
-    <div class="card">
-        <p>
-        Unsere VTC wurde gegründet, um gemeinsam Spaß im Multiplayer von Euro Truck Simulator zu haben.
-        Wir organisieren regelmäßige Fahrten und Events.
-        </p>
-    </div>
-</section>
-
-<section id="drivers">
-    <h2>Unsere Fahrer</h2>
-    <div class="card">
-        <ul>
-            <li>Z3phyr</li>
-            <li>Moritz</li>
-            <li>Weitere Fahrer folgen... (hoffentlich 🤗)</li>
-        </ul>
-    </div>
-</section>
-
-<section id="join">
-    <h2>Jetzt beitreten</h2>
-    <div class="card">
-        <p>Möchtest du Teil der Z3p VTC werden?</p>
-        <button onclick="alert('Kontaktiere uns auf Discord!')">Jetzt Bewerben</button>
-    </div>
-</section>
+<button onclick="getRandomFun()">Show Me Fun!</button>
 
 <footer>
-    <p>© 2026 Z3p VTC | TruckersMP VTC</p>
+  &copy; 2026 Daily Fun Hub
 </footer>
+
+<script>
+  const funItems = [
+    "https://i.imgur.com/1eI3H1M.jpg", // meme
+    "https://i.imgur.com/6kJZs6b.jpg", // meme
+    "https://www.w3schools.com/html/mov_bbb.mp4", // short video
+    "https://i.imgur.com/0zjEJd2.jpg", // meme
+    "https://www.w3schools.com/html/movie.mp4" // short video
+  ];
+
+  function getRandomFun() {
+    const randomIndex = Math.floor(Math.random() * funItems.length);
+    const mediaUrl = funItems[randomIndex];
+    const container = document.getElementById('fun-content');
+
+    if (mediaUrl.endsWith(".mp4")) {
+      container.innerHTML = `<video controls autoplay><source src="${mediaUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+    } else {
+      container.innerHTML = `<img src="${mediaUrl}" alt="Fun Media">`;
+    }
+  }
+</script>
 
 </body>
 </html>
