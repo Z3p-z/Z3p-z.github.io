@@ -116,9 +116,9 @@ footer{
     <h2>Unsere Fahrer</h2>
     <div class="card">
         <ul>
-            <li>Jannik</li>
-            <li>Timnik</li>
-            <li>Weitere Fahrer folgen...</li>
+            <li>Z3phyr</li>
+            <li>Moritz</li>
+            <li>Weitere Fahrer folgen... (hoffentlich 🤗)</li>
         </ul>
     </div>
 </section>
