@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>DSGVO — Melo Bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #05010a;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent2: #3b82f6;
+    --border: rgba(148, 163, 184, 0.35);
+    --card: rgba(15, 23, 42, 0.9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+    padding: 40px 20px;
+}
+
+/* Language Switcher */
+.lang-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.lang-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.lang-btn:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+}
+
+/* Title */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Cards */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+}
+
+.card h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    color: var(--accent2);
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lang-switch">
+    <button class="lang-btn" onclick="switchLang()">EN / DE</button>
+</div>
+
+<h1 id="title">DSGVO / Privacy</h1>
+
+<div class="card">
+    <h2 id="as_is_title">Bereitstellung „as is“</h2>
+    <p id="as_is_text">
+        Melo wird „as is“ bereitgestellt. Das bedeutet, dass der Bot ohne Garantie,
+        ohne Anspruch auf Vollständigkeit und ohne Zusicherung bestimmter Funktionen
+        genutzt werden kann. Änderungen, Updates oder Abschaltungen können jederzeit
+        erfolgen.
+    </p>
+</div>
+
+<div class="card">
+    <h2 id="data_title">Welche Daten verarbeitet Melo?</h2>
+    <p id="data_text">
+        Melo verarbeitet ausschließlich Daten, die für die Funktion des Bots notwendig
+        sind. Dazu gehören:<br><br>
+        • Discord-Nutzernamen<br>
+        • Discord-IDs<br>
+        • Nachrichteninhalte, sofern sie für Commands benötigt werden<br>
+        • Server-Informationen, die Discord automatisch übermittelt<br><br>
+        Es werden keine Daten an Dritte weitergegeben.
+    </p>
+</div>
+
+<div class="card">
+    <h2 id="storage_title">Speicherung von Daten</h2>
+    <p id="storage_text">
+        Melo speichert nur Daten, die für Economy-, Moderations- oder Statistikfunktionen
+        notwendig sind. Diese Daten können jederzeit auf Anfrage gelöscht werden.
+    </p>
+</div>
+
+<div class="card">
+    <h2 id="contact_title">Kontakt</h2>
+    <p id="contact_text">
+        Bei Fragen zur Datenverarbeitung oder zur Löschung gespeicherter Daten
+        kannst du das Melo-Team über den Discord-Supportserver kontaktieren.
+    </p>
+</div>
+
+<footer>
+    © 2026 Melo Bot — DSGVO / Privacy
+</footer>
+
+<script>
+let lang = "de";
+
+function switchLang() {
+    lang = lang === "de" ? "en" : "de";
+
+    if (lang === "en") {
+        document.getElementById("title").innerText = "Privacy Policy";
+        document.getElementById("as_is_title").innerText = "Provided \"as is\"";
+        document.getElementById("as_is_text").innerText =
+            "Melo is provided \"as is\". This means the bot is used without warranty, " +
+            "without any guarantee of completeness, and without assurance of specific features. " +
+            "Changes, updates, or shutdowns may occur at any time.";
+
+        document.getElementById("data_title").innerText = "What data does Melo process?";
+        document.getElementById("data_text").innerHTML =
+            "Melo only processes data required for the bot to function. This includes:<br><br>" +
+            "• Discord usernames<br>" +
+            "• Discord IDs<br>" +
+            "• Message content when needed for commands<br>" +
+            "• Server information automatically provided by Discord<br><br>" +
+            "No data is shared with third parties.";
+
+        document.getElementById("storage_title").innerText = "Data Storage";
+        document.getElementById("storage_text").innerText =
+            "Melo stores only the data required for economy, moderation, or statistics features. " +
+            "This data can be deleted upon request.";
+
+        document.getElementById("contact_title").innerText = "Contact";
+        document.getElementById("contact_text").innerText =
+            "For questions about data processing or deletion requests, you can contact the Melo team via the Discord support server.";
+
+    } else {
+        document.getElementById("title").innerText = "DSGVO / Privacy";
+        document.getElementById("as_is_title").innerText = "Bereitstellung „as is“";
+        document.getElementById("as_is_text").innerText =
+            "Melo wird „as is“ bereitgestellt. Das bedeutet, dass der Bot ohne Garantie, " +
+            "ohne Anspruch auf Vollständigkeit und ohne Zusicherung bestimmter Funktionen " +
+            "genutzt werden kann. Änderungen, Updates oder Abschaltungen können jederzeit erfolgen.";
+
+        document.getElementById("data_title").innerText = "Welche Daten verarbeitet Melo?";
+        document.getElementById("data_text").innerHTML =
+            "Melo verarbeitet ausschließlich Daten, die für die Funktion des Bots notwendig sind. Dazu gehören:<br><br>" +
+            "• Discord-Nutzernamen<br>" +
+            "• Discord-IDs<br>" +
+            "• Nachrichteninhalte, sofern sie für Commands benötigt werden<br>" +
+            "• Server-Informationen, die Discord automatisch übermittelt<br><br>" +
+            "Es werden keine Daten an Dritte weitergegeben.";
+
+        document.getElementById("storage_title").innerText = "Speicherung von Daten";
+        document.getElementById("storage_text").innerText =
+            "Melo speichert nur Daten, die für Economy-, Moderations- oder Statistikfunktionen notwendig sind. " +
+            "Diese Daten können jederzeit auf Anfrage gelöscht werden.";
+
+        document.getElementById("contact_title").innerText = "Kontakt";
+        document.getElementById("contact_text").innerText =
+            "Bei Fragen zur Datenverarbeitung oder zur Löschung gespeicherter Daten kannst du das Melo-Team über den Discord-Supportserver kontaktieren.";
+    }
+}
+</script>
+
+</body>
+</html>
