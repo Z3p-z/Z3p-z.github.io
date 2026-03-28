@@ -1,110 +1,494 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Robin ist am goonen</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffe66d, #ff9ff3);
-            color: #222;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<title>Melo — Discord Bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        header {
-            background: #ff6b81;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-        h1 {
-            margin: 0;
-            font-size: 26px;
-        }
+<style>
+:root {
+    --bg: #05010a;
+    --bg-soft: #070312;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;   /* Purple */
+    --accent2: #3b82f6;  /* Blue */
+    --border: rgba(148, 163, 184, 0.35);
+    --card: rgba(15, 23, 42, 0.9);
+    --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.8);
+}
 
-        main {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+* { box-sizing: border-box; }
 
-        .brainrot-theme {
-            margin-bottom: 25px;
-        }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+}
 
-        .brainrot-theme h2 {
-            margin-top: 0;
-            color: #ff6b81;
-        }
+/* Background grid */
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--accent2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.04;
+    animation: gridMove 22s linear infinite;
+    z-index: -1;
+}
+@keyframes gridMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(40px); }
+}
 
-        .goon-status {
-            border-top: 2px dashed #ff6b81;
-            padding-top: 20px;
-        }
+/* Layout */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 18px 60px;
+}
 
-        .status-box {
-            display: inline-block;
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: #ffeaa7;
-            font-weight: bold;
-        }
+/* Navbar */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(14px);
+    background: linear-gradient(to bottom, rgba(5, 1, 10, 0.95), rgba(5, 1, 10, 0.75));
+    border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+.nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nav-logo {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: radial-gradient(circle at 30% 0, #ffffff, var(--accent));
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.7);
+}
+.nav-title {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.18em;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--accent2);
+}
+.nav-links {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+}
+.nav-links a:hover {
+    color: var(--accent2);
+    border-bottom-color: var(--accent2);
+}
 
-        .status-label {
-            color: #636e72;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+/* Hero */
+.hero {
+    padding: 60px 0 40px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+    gap: 30px;
+}
+@media (max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+.hero-main-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 34px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+.hero-subtitle {
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 18px;
+}
+.hero-text {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.6;
+}
+.hero-buttons {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.btn {
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--text);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-primary {
+    border-color: transparent;
+    background:
+        radial-gradient(circle at 0 0, rgba(139, 92, 246, 0.4), transparent 55%),
+        linear-gradient(120deg, var(--accent), var(--accent2));
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.9);
+}
+.btn:hover { transform: translateY(-1px); }
 
-        .status-value {
-            font-size: 18px;
-            color: #d63031;
-        }
+/* Tags */
+.hero-tags {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    color: var(--muted);
+}
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            font-size: 12px;
-            color: #555;
-        }
-    </style>
+/* Hero side */
+.hero-side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.hero-avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.hero-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    border: 3px solid var(--accent2);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
+    object-fit: cover;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 16px 18px 14px;
+    box-shadow: var(--shadow-soft);
+}
+.card-title {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+}
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 4px 0;
+    color: var(--muted);
+}
+.card-row span:first-child {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    color: #9ca3af;
+}
+.card-row span:last-child {
+    color: var(--text);
+}
+
+/* Sections */
+.section {
+    margin-top: 40px;
+}
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 18px;
+}
+.section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+}
+.feature-card {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 14px 16px 12px;
+}
+.feature-title {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+}
+.feature-text {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* Commands */
+.commands-category {
+    margin-top: 26px;
+    text-align: left;
+}
+.commands-heading {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 8px;
+}
+.commands-list {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: rgba(15, 23, 42, 0.9);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    line-height: 1.8;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Robin ist am goonen</h1>
-        <p>Willkommen im ultimativen Robin-Goont-Universum.</p>
-    </header>
 
-    <main>
-        <section class="brainrot-theme">
-            <h2>Brainrot: Grossini Penisini</h2>
-            <p>
-                Robin wichst seit Tagen ununterbrochen an seinem <strong>Grossini Penisini</strong> herum, was zu weissen Flecken auf dem Shirt führt.
+<div class="bg-grid"></div>
+
+<nav>
+    <div class="nav-inner">
+        <div class="nav-left">
+            <div class="nav-logo"></div>
+            <div class="nav-title">MELO BOT</div>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#economy">Economy</a>
+            <a href="#games">Games</a>
+            <a href="#commands">Commands</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="home">
+    <section class="hero">
+        <div>
+            <div class="hero-main-title">MELO</div>
+            <div class="hero-subtitle">DISCORD BOT • V2.8.0</div>
+            <p class="hero-text">
+                Melo is a Discord bot built for moderation, economy, games and utility.
+                Fast, stable and designed for servers that want clear rules, fun features
+                and a clean command set — without chaos.
             </p>
-        </section>
 
-        <section class="goon-status">
-            <h2>Goon Status</h2>
-            <p class="status-label">Aktueller Status:</p>
-            <div class="status-box">
-                <span class="status-value">FULL GOON – GOON SO LANGE BIS DU STIRBST</span>
+            <div class="hero-buttons">
+                <a href="#commands" class="btn btn-primary">Commands</a>
+                <a href="#economy" class="btn">Economy</a>
+                <a href="#games" class="btn">Games</a>
             </div>
-            <p style="margin-top: 15px;">
-                Goon-Level: 9999 / 10<br>
-                Fokus: 0% produktiv, 100% Brainrot<br>
-                Motto: „NOCH MAL“
-            </p>
-        </section>
-    </main>
+
+            <div class="hero-tags">
+                <div class="tag">Melo Team</div>
+                <div class="tag">Moderation</div>
+                <div class="tag">Economy</div>
+                <div class="tag">Games</div>
+                <div class="tag">Utility</div>
+            </div>
+        </div>
+
+        <div class="hero-side">
+            <div class="hero-avatar-wrap">
+                <img class="hero-avatar"
+                     src="https://cdn.discordapp.com/avatars/1441745600583307356/e07fece8f5b2e357ede4ccddfbf5eddc.png?size=512"
+                     alt="Melo Avatar">
+            </div>
+
+            <div class="card">
+                <div class="card-title">Facts</div>
+                <div class="card-row">
+                    <span>Commands</span><span>60+</span>
+                </div>
+                <div class="card-row">
+                    <span>Moderation</span><span>Warn, Mute, Kick, Ban</span>
+                </div>
+                <div class="card-row">
+                    <span>Economy</span><span>Coins, Daily, Leaderboard</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Quick Start</div>
+                <div class="card-row">
+                    <span>.help</span><span>Show all commands</span>
+                </div>
+                <div class="card-row">
+                    <span>.daily</span><span>Claim daily reward</span>
+                </div>
+                <div class="card-row">
+                    <span>.leaderboard</span><span>Top users</span>
+                </div>
+                <div class="card-row">
+                    <span>.ping</span><span>Check bot latency</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ECONOMY -->
+    <section class="section" id="economy">
+        <div class="section-title">Economy</div>
+        <div class="section-grid">
+            <div class="feature-card">
+                <div class="feature-title">Coins & Daily</div>
+                <div class="feature-text">
+                    Daily coins with streaks and rewards for activity.
+                    Build long-term engagement with simple, clear rewards.
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">Leaderboard</div>
+                <div class="feature-text">
+                    Global and server leaderboards for coins and activity.
+                    Perfect for competition and active communities.
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">Trading</div>
+                <div class="feature-text">
+                    Give coins and gifts between users. Simple, controlled and
+                    designed to avoid abuse.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GAMES -->
+    <section class="section" id="games">
+        <div class="section-title">Games</div>
+        <div class="section-grid">
+            <div class="feature-card">
+                <div class="feature-title">Fun Commands</div>
+                <div class="feature-text">
+                    8ball, coin, roll, roulette, rock and more — quick actions
+                    to keep chats alive.
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">Trivia & Facts</div>
+                <div class="feature-text">
+                    Trivia, random facts and WYR (Would You Rather) for
+                    lightweight, low-effort interaction.
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">Guessing & Jokes</div>
+                <div class="feature-text">
+                    Guessing games and jokes for casual fun without setup.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMANDS -->
+    <section class="section" id="commands">
+        <div class="section-title">Commands</div>
+
+        <div class="commands-category">
+            <div class="commands-heading">Administration</div>
+            <div class="commands-list">
+                .warn .clearwarnings .mute .unmute .slowmode .kick .ban .unban .banlist
+            </div>
+        </div>
+
+        <div class="commands-category">
+            <div class="commands-heading">Utility</div>
+            <div class="commands-list">
+                .help .ping .uptime .servers .serverinfo .userinfo .avatar .source .version .say .embed .contact
+            </div>
+        </div>
+
+        <div class="commands-category">
+            <div class="commands-heading">Fun & Games</div>
+            <div class="commands-list">
+                .8ball .roll .coin .roulette .rock .joke .trivia .randomfact .wyr .hello .guessing
+            </div>
+        </div>
+
+        <div class="commands-category">
+            <div class="commands-heading">Economy</div>
+            <div class="commands-list">
+                .balance .daily .give .gamble .leaderboard .rich .pickup
+            </div>
+        </div>
+    </section>
 
     <footer>
-        &copy; 2026 – Offizielles Robin Goont Dokument.
+        © 2026 Melo Bot — Rights reserved. Made with ❤️ by Z3p-z.
     </footer>
+</div>
+
 </body>
 </html>
