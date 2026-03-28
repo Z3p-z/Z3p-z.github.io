@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Z3phyr — Melo Team</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #05010a;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent2: #3b82f6;
+    --border: rgba(148, 163, 184, 0.35);
+    --card: rgba(15, 23, 42, 0.9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+    text-align: center;
+}
+
+/* Avatar */
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 999px;
+    border: 3px solid var(--accent2);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
+    margin-top: 60px;
+    object-fit: cover;
+}
+
+/* Name */
+.name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-top: 20px;
+}
+
+/* Rank */
+.rank {
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-top: 6px;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    text-align: left;
+}
+
+.card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    color: var(--accent2);
+    margin-bottom: 12px;
+}
+
+.card-text {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+
+<img class="avatar" src="https://images-ext-1.discordapp.net/external/54DabgDNpcAxcD5kXSmEJxjfg3yRmCy0T45JG1LGphg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1319626126699528266/e4a396755b14f7ff3d1c29602c2157f3.png?format=webp&quality=lossless">
+
+<div class="name">Z3phyr</div>
+<div class="rank">Founder</div>
+
+<div class="card">
+    <div class="card-title">About</div>
+    <div class="card-text">
+        Z3phyr is the Founder of Melo.
+        Over 1 Year of experience has he acquired.
+    </div>
+</div>
+
+<footer>
+    Melo Bot — Team Member Profile
+</footer>
+
+</body>
+</html>
