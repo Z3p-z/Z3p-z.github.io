@@ -7,7 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <script src="/config.js"></script>
 <script>
-if (MAINTENANCE_MODE && !location.pathname.startsWith("/maintenance") && !location.pathname.startsWith("/maintenance-admin")) {
+if (
+    MAINTENANCE_MODE &&
+    !location.pathname.startsWith("/maintenance") &&
+    !location.pathname.startsWith("/maintenance-admin")
+) {
     location.href = "/maintenance";
 }
 </script>

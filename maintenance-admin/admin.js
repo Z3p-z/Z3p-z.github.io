@@ -16,11 +16,13 @@ function login() {
 
 function enableMaintenance() {
     MAINTENANCE_MODE = true;
+    localStorage.setItem("maintenance", "true");
     updateStatus();
 }
 
 function disableMaintenance() {
     MAINTENANCE_MODE = false;
+    localStorage.setItem("maintenance", "false");
     updateStatus();
 }
 

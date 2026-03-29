@@ -5,7 +5,5 @@
 // Password for /maintenance-admin
 const ADMIN_PASSWORD = "XYZ";
 
-// Maintenance mode state
-// false = site works normally
-// true  = redirect all pages to /maintenance
-let MAINTENANCE_MODE = false;
+// Load maintenance state from localStorage
+let MAINTENANCE_MODE = localStorage.getItem("maintenance") === "true";
