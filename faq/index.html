@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Melo FAQ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #05010a;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent2: #3b82f6;
+    --border: rgba(148, 163, 184, 0.45);
+    --card: rgba(15, 23, 42, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+    padding: 40px 20px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes neonBorder {
+    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+}
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Layout */
+.wrapper {
+    max-width: 900px;
+    margin: auto;
+    animation: fadeInUp 0.7s ease-out;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* FAQ Card */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 24px;
+    animation: neonBorder 3.5s ease-in-out infinite, floatCard 6s ease-in-out infinite;
+}
+
+.card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+/* Form */
+label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--accent2);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+button {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 55%);
+    color: var(--text);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent2);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+/* FAQ List */
+.faq-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(148,163,184,0.3);
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.faq-question {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+.faq-answer {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    display: none;
+}
+
+.success {
+    display: none;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #22c55e;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+    <h1>Melo FAQ</h1>
+
+    <!-- FAQ LIST -->
+    <div class="card">
+        <div class="card-title">Questions & Answers</div>
+
+        <div id="faqList">
+            <!-- Example entry -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">How do I invite Melo?</div>
+                <div class="faq-answer">Use the /invite command or click the invite link on the main page.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMIT QUESTION -->
+    <div class="card">
+        <div class="card-title">Submit a Question</div>
+
+        <label>Your Name (optional)</label>
+        <input id="qName" type="text" placeholder="Your name">
+
+        <label>Your Question</label>
+        <textarea id="qText" placeholder="Write your question..."></textarea>
+
+        <button onclick="submitQuestion()">Submit Question</button>
+        <div id="qSuccess" class="success">Question submitted!</div>
+    </div>
+
+    <!-- SUBMIT ANSWER -->
+    <div class="card">
+        <div class="card-title">Submit an Answer</div>
+
+        <label>Your Name (optional)</label>
+        <input id="aName" type="text" placeholder="Your name">
+
+        <label>Which Question?</label>
+        <input id="aQuestion" type="text" placeholder="Copy the question text here">
+
+        <label>Your Answer</label>
+        <textarea id="aText" placeholder="Write your answer..."></textarea>
+
+        <button onclick="submitAnswer()">Submit Answer</button>
+        <div id="aSuccess" class="success">Answer submitted!</div>
+    </div>
+
+</div>
+
+<script src="faq.js"></script>
+<footer>
+    Q&A are getting shown in the <strong>official Discord Server.</strong>
+</footer>
+</body>
+</html>
