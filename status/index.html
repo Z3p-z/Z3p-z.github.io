@@ -114,18 +114,30 @@ footer {
 </footer>
 
 <script>
-const GIST_RAW_URL = "https://gist.github.com/Z3p-z/28987430eeaf6024ace7a22b6c3a3aaf/raw/4e1173809c47714a441edb92cac3acba1bf8ed71/melo-status.txt";
+const GIST_API_URL = "https://api.github.com/gists/7d9c8e5b1a2f4c3e9b0a1d2e3f4g5h6";
 
 async function loadStatus() {
-    const res = await fetch(GIST_RAW_URL);
-    const text = await res.text();
+    try {
+        const res = await fetch(GIST_API_URL);
+        const data = await res.json();
 
-    document.getElementById("statusText").innerText = text;
+        // Get the content of the file
+        const fileContent = data.files["melo-status.txt"].content;
 
-    if (text.includes("Online: true")) {
-        document.getElementById("statusBadge").innerText = "Online";
-        document.getElementById("statusBadge").className = "status-badge online";
-    } else {
+        // Display the text
+        document.getElementById("statusText").innerText = fileContent;
+
+        // Online/offline badge
+        if (fileContent.includes("Online: true")) {
+            document.getElementById("statusBadge").innerText = "Online";
+            document.getElementById("statusBadge").className = "status-badge online";
+        } else {
+            document.getElementById("statusBadge").innerText = "Offline";
+            document.getElementById("statusBadge").className = "status-badge offline";
+        }
+
+    } catch (err) {
+        document.getElementById("statusText").innerText = "Failed to load status.";
         document.getElementById("statusBadge").innerText = "Offline";
         document.getElementById("statusBadge").className = "status-badge offline";
     }
