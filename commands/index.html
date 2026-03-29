@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Melo Commands</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #05010a;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent2: #3b82f6;
+    --border: rgba(148, 163, 184, 0.5);
+    --card: rgba(15, 23, 42, 0.9);
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes neonBorder {
+    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+.subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* Commands layout */
+.commands-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.cmd-card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 16px 14px;
+    animation: neonBorder 3.5s ease-in-out infinite;
+}
+
+.cmd-category {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.cmd-item {
+    margin-bottom: 10px;
+}
+.cmd-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.cmd-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* Footer */
+footer {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="title">Melo Commands</div>
+        <div class="subtitle">Public • Safe • Filtered</div>
+    </header>
+
+    <main class="commands-wrapper">
+        <section class="cmd-card">
+            <div class="cmd-category">General</div>
+            <div class="cmd-item">
+                <div class="cmd-name">help</div>
+                <div class="cmd-desc">Shows an overview of Melo’s main features and command categories.</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">ping</div>
+                <div class="cmd-desc">Displays the current bot latency and basic status.</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">info</div>
+                <div class="cmd-desc">Shows information about Melo, version and links.</div>
+            </div>
+        </section>
+
+        <section class="cmd-card">
+            <div class="cmd-category">Moderation</div>
+            <div class="cmd-item">
+                <div class="cmd-name">warn</div>
+                <div class="cmd-desc">Warns a user and logs the warning (if enabled).</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">mute</div>
+                <div class="cmd-desc">Temporarily mutes a user according to your server rules.</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">clear</div>
+                <div class="cmd-desc">Clears a specified number of messages in a channel.</div>
+            </div>
+        </section>
+
+        <section class="cmd-card">
+            <div class="cmd-category">Utility</div>
+            <div class="cmd-item">
+                <div class="cmd-name">avatar</div>
+                <div class="cmd-desc">Shows the avatar of a user in high resolution.</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">serverinfo</div>
+                <div class="cmd-desc">Displays information about the current server.</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">userinfo</div>
+                <div class="cmd-desc">Shows information about a specific user.</div>
+            </div>
+        </section>
+
+        <section class="cmd-card">
+            <div class="cmd-category">Fun</div>
+            <div class="cmd-item">
+                <div class="cmd-name">8ball</div>
+                <div class="cmd-desc">Ask a question and get a random answer.</div>
+            </div>
+            <div class="cmd-item">
+                <div class="cmd-name">meme</div>
+                <div class="cmd-desc">Sends a random meme from a curated source.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>Back to main: <a href="/" style="color:var(--accent2); text-decoration:none;">z3p-z.github.io</a></footer>
+</div>
+</body>
+</html>

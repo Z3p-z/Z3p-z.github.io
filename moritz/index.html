@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Moritz — Melo Team</title>
+<title>Moritz • Melo Team</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --bg: #05010a;
@@ -14,102 +12,99 @@
     --muted: #9ca3af;
     --accent: #8b5cf6;
     --accent2: #3b82f6;
-    --border: rgba(148, 163, 184, 0.35);
+    --border: rgba(148, 163, 184, 0.5);
     --card: rgba(15, 23, 42, 0.9);
 }
-
+* { box-sizing: border-box; }
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
     color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes neonBorder {
+    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+}
+.container {
+    width: 100%;
+    max-width: 720px;
+    animation: fadeInUp 0.7s ease-out;
+}
+.header {
     text-align: center;
+    margin-bottom: 24px;
 }
-
-/* Avatar */
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 999px;
-    border: 3px solid var(--accent2);
-    box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
-    margin-top: 60px;
-    object-fit: cover;
-}
-
-/* Name */
-.name {
+.title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
     letter-spacing: 0.18em;
-    color: var(--accent);
-    margin-top: 20px;
-}
-
-/* Rank */
-.rank {
-    font-size: 14px;
-    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent2);
-    margin-top: 6px;
+    color: var(--accent);
+    margin-bottom: 8px;
 }
-
-/* Card */
+.subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
 .card {
     background: var(--card);
+    border-radius: 16px;
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    width: 90%;
-    max-width: 500px;
-    margin: 30px auto;
-    text-align: left;
+    padding: 22px 20px;
+    animation: neonBorder 3.5s ease-in-out infinite;
 }
-
 .card-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0.16em;
     color: var(--accent2);
-    margin-bottom: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
-
 .card-text {
     font-size: 15px;
     color: var(--muted);
     line-height: 1.6;
 }
-
-/* Footer */
 footer {
-    margin-top: 40px;
-    padding: 20px;
-    font-size: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 </style>
 </head>
-
 <body>
+<div class="container">
+    <header class="header">
+        <div class="title">Moritz</div>
+        <div class="subtitle">Developer • Melo Project</div>
+    </header>
 
-<img class="avatar" src="https://media.discordapp.net/attachments/1444264020105367564/1475116147652427920/Z3p.png?ex=69c92377&is=69c7d1f7&hm=dfad6c15922858f4df0565a07d2c9da2ad59911524fa3e44301867645b3664bf&=&format=webp&quality=lossless&width=1006&height=1006">
+    <main class="card">
+        <div class="card-title">About</div>
+        <p class="card-text">
+            Moritz focuses on implementation details, feature development and stability improvements for Melo.
+            From command logic to integrations, Moritz helps keep the bot fast, robust and enjoyable to use.
+        </p>
+    </main>
 
-<div class="name">Moritz</div>
-<div class="rank">Team Member</div>
-
-<div class="card">
-    <div class="card-title">About</div>
-    <div class="card-text">
-     Moritz is a Team Member of Melo. He is always here to help with good mood and professional answers! He loves to play Flight-Simulators!
-    </div>
+    <footer>Back to main: <a href="/" style="color:var(--accent2); text-decoration:none;">z3p-z.github.io</a></footer>
 </div>
-
-<footer>
-    Melo Bot — Team Member Profile
-</footer>
-
 </body>
 </html>

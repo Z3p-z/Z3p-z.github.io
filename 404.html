@@ -2,11 +2,9 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>404 — Melo Bot</title>
+<title>404 • Melo Bot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --bg: #05010a;
@@ -14,125 +12,105 @@
     --muted: #9ca3af;
     --accent: #8b5cf6;
     --accent2: #3b82f6;
-    --border: rgba(148, 163, 184, 0.35);
+    --border: rgba(148, 163, 184, 0.5);
     --card: rgba(15, 23, 42, 0.9);
 }
-
+* { box-sizing: border-box; }
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
     color: var(--text);
-    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 40px 20px;
 }
 
-/* 4📄4 Logo */
-.logo-404 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 38px;
-    letter-spacing: 0.25em;
-    color: var(--accent2);
-    margin-top: 20px;
-    text-shadow: 0 0 14px rgba(59, 130, 246, 0.7);
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes neonBorder {
+    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
 }
 
-/* Big 404 */
-.big-404 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 80px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-top: 10px;
-    text-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+.container {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    animation: fadeInUp 0.7s ease-out;
 }
 
-/* Subtitle */
-.subtitle {
-    font-size: 18px;
-    color: var(--muted);
-    margin-top: -10px;
-    margin-bottom: 40px;
-    letter-spacing: 0.12em;
-}
-
-/* Card */
 .card {
     background: var(--card);
+    border-radius: 16px;
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    width: 90%;
-    max-width: 500px;
-    margin: 0 auto 30px auto;
-    text-align: left;
+    padding: 24px 20px;
+    animation: neonBorder 3.5s ease-in-out infinite;
 }
 
-.card-title {
+.code {
     font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.16em;
-    color: var(--accent2);
-    margin-bottom: 12px;
+    font-size: 40px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
 }
 
-.card-text {
+.message {
     font-size: 15px;
     color: var(--muted);
-    line-height: 1.6;
+    margin-bottom: 18px;
 }
 
-/* Button */
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 22px;
-    border-radius: 8px;
-    background: var(--accent2);
-    color: white;
+.link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    color: var(--text);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    transition: 0.2s;
+    background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 55%);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
 }
-.btn:hover {
-    background: var(--accent);
+.link-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent2);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
 }
 
-/* Footer */
 footer {
-    margin-top: 40px;
-    padding: 20px;
-    font-size: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 </style>
 </head>
-
 <body>
-
-<div class="logo-404">4📄4</div>
-
-<div class="big-404">404</div>
-<div class="subtitle">Diese Seite existiert nicht.</div>
-
-<div class="card">
-    <div class="card-title">Lost in the Neon Void</div>
-    <div class="card-text">
-        Die Seite, die du suchst, wurde nicht gefunden.  
-        Vielleicht wurde sie verschoben, gelöscht oder hat nie existiert.  
-        Du kannst jederzeit zur Startseite zurückkehren.
+<div class="container">
+    <div class="card">
+        <div class="code">404</div>
+        <div class="message">
+            This route doesn’t exist in the Melos system.<br>
+            Maybe the command was mistyped—or the page moved.
+        </div>
+        <a class="link-btn" href="/">Back to main</a>
     </div>
+    <footer>© 2026 Melo Bot</footer>
 </div>
-
-<a href="/" class="btn">Zurück zur Startseite</a>
-
-<footer>
-    © 2026 Melo Bot — 404 Error
-</footer>
-
 </body>
 </html>

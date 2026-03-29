@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Z3phyr — Melo Team</title>
+<title>Z3phyr • Melo Team</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --bg: #05010a;
@@ -14,103 +12,99 @@
     --muted: #9ca3af;
     --accent: #8b5cf6;
     --accent2: #3b82f6;
-    --border: rgba(148, 163, 184, 0.35);
+    --border: rgba(148, 163, 184, 0.5);
     --card: rgba(15, 23, 42, 0.9);
 }
-
+* { box-sizing: border-box; }
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
     color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes neonBorder {
+    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+}
+.container {
+    width: 100%;
+    max-width: 720px;
+    animation: fadeInUp 0.7s ease-out;
+}
+.header {
     text-align: center;
+    margin-bottom: 24px;
 }
-
-/* Avatar */
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 999px;
-    border: 3px solid var(--accent2);
-    box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
-    margin-top: 60px;
-    object-fit: cover;
-}
-
-/* Name */
-.name {
+.title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
     letter-spacing: 0.18em;
-    color: var(--accent);
-    margin-top: 20px;
-}
-
-/* Rank */
-.rank {
-    font-size: 14px;
-    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent2);
-    margin-top: 6px;
+    color: var(--accent);
+    margin-bottom: 8px;
 }
-
-/* Card */
+.subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
 .card {
     background: var(--card);
+    border-radius: 16px;
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    width: 90%;
-    max-width: 500px;
-    margin: 30px auto;
-    text-align: left;
+    padding: 22px 20px;
+    animation: neonBorder 3.5s ease-in-out infinite;
 }
-
 .card-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0.16em;
     color: var(--accent2);
-    margin-bottom: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
-
 .card-text {
     font-size: 15px;
     color: var(--muted);
     line-height: 1.6;
 }
-
-/* Footer */
 footer {
-    margin-top: 40px;
-    padding: 20px;
-    font-size: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 </style>
 </head>
-
 <body>
+<div class="container">
+    <header class="header">
+        <div class="title">Z3phyr</div>
+        <div class="subtitle">Lead • Melo Project</div>
+    </header>
 
-<img class="avatar" src="https://images-ext-1.discordapp.net/external/54DabgDNpcAxcD5kXSmEJxjfg3yRmCy0T45JG1LGphg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1319626126699528266/e4a396755b14f7ff3d1c29602c2157f3.png?format=webp&quality=lossless">
+    <main class="card">
+        <div class="card-title">About</div>
+        <p class="card-text">
+            Z3phyr is responsible for the core architecture, design direction and long‑term vision of the Melo bot.
+            From infrastructure decisions to UX details, Z3phyr keeps the project focused, stable and future‑proof.
+        </p>
+    </main>
 
-<div class="name">Z3phyr</div>
-<div class="rank">Founder</div>
-
-<div class="card">
-    <div class="card-title">About</div>
-    <div class="card-text">
-        Z3phyr is the Founder of Melo.
-        Over 1 Year of experience has he acquired.
-    </div>
+    <footer>Back to main: <a href="/" style="color:var(--accent2); text-decoration:none;">z3p-z.github.io</a></footer>
 </div>
-
-<footer>
-    Melo Bot — Team Member Profile
-</footer>
-
 </body>
 </html>
