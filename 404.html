@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>404 — Melo Bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #05010a;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent2: #3b82f6;
+    --border: rgba(148, 163, 184, 0.35);
+    --card: rgba(15, 23, 42, 0.9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* 4📄4 Logo */
+.logo-404 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px;
+    letter-spacing: 0.25em;
+    color: var(--accent2);
+    margin-top: 20px;
+    text-shadow: 0 0 14px rgba(59, 130, 246, 0.7);
+}
+
+/* Big 404 */
+.big-404 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 80px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-top: 10px;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: -10px;
+    margin-bottom: 40px;
+    letter-spacing: 0.12em;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    text-align: left;
+}
+
+.card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    color: var(--accent2);
+    margin-bottom: 12px;
+}
+
+.card-text {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: var(--accent2);
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+.btn:hover {
+    background: var(--accent);
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo-404">4📄4</div>
+
+<div class="big-404">404</div>
+<div class="subtitle">Diese Seite existiert nicht.</div>
+
+<div class="card">
+    <div class="card-title">Lost in the Neon Void</div>
+    <div class="card-text">
+        Die Seite, die du suchst, wurde nicht gefunden.  
+        Vielleicht wurde sie verschoben, gelöscht oder hat nie existiert.  
+        Du kannst jederzeit zur Startseite zurückkehren.
+    </div>
+</div>
+
+<a href="/" class="btn">Zurück zur Startseite</a>
+
+<footer>
+    © 2026 Melo Bot — 404 Error
+</footer>
+
+</body>
+</html>
