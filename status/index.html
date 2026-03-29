@@ -114,27 +114,18 @@ footer {
 </footer>
 
 <script>
-const WEBHOOK = "https://discord.com/api/webhooks/1487719376072474814/TQdlnkl-aoXBFVlt7s8WkmB-D_tvWmFqkptP5NZ3xGVSN6iGA4HO0Jiz8Aanm_3i0SdV/messages?limit=1";
+const GIST_RAW_URL = "https://gist.github.com/Z3p-z/28987430eeaf6024ace7a22b6c3a3aaf/raw/4e1173809c47714a441edb92cac3acba1bf8ed71/melo-status.txt";
 
 async function loadStatus() {
-    try {
-        const res = await fetch(WEBHOOK);
-        const data = await res.json();
+    const res = await fetch(GIST_RAW_URL);
+    const text = await res.text();
 
-        const msg = data[0].content;
+    document.getElementById("statusText").innerText = text;
 
-        document.getElementById("statusText").innerText = msg;
-
-        if (msg.includes("Online: true")) {
-            document.getElementById("statusBadge").innerText = "Online";
-            document.getElementById("statusBadge").className = "status-badge online";
-        } else {
-            document.getElementById("statusBadge").innerText = "Offline";
-            document.getElementById("statusBadge").className = "status-badge offline";
-        }
-
-    } catch (e) {
-        document.getElementById("statusText").innerText = "Error at loading.";
+    if (text.includes("Online: true")) {
+        document.getElementById("statusBadge").innerText = "Online";
+        document.getElementById("statusBadge").className = "status-badge online";
+    } else {
         document.getElementById("statusBadge").innerText = "Offline";
         document.getElementById("statusBadge").className = "status-badge offline";
     }
