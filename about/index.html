@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <title>About • Melo Bot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
     --bg: #05010a;
@@ -15,119 +17,143 @@
     --border: rgba(148, 163, 184, 0.5);
     --card: rgba(15, 23, 42, 0.9);
 }
-* { box-sizing: border-box; }
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    font-family: 'Inter', sans-serif;
     color: var(--text);
 }
 
-/* Banner */
+/* ===========================
+   STRONG NEON WAVE BANNER
+   =========================== */
 .banner {
     position: relative;
-    height: 220px;
+    width: 100%;
+    min-height: 260px;
     overflow: hidden;
-    background: linear-gradient(120deg, #1d0b3a, #0b2348, #1d0b3a);
-    background-size: 200% 200%;
-    animation: bannerMove 12s ease-in-out infinite;
     display: flex;
     align-items: flex-end;
     padding: 20px;
-}
-@keyframes bannerMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    background: #0a0216;
 }
 
-/* PFP */
-.pfp-wrapper {
+.wave {
     position: absolute;
-    bottom: -48px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.pfp {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 3px solid rgba(229, 231, 235, 0.9);
-    background-image: url("https://avatars.githubusercontent.com/u/9919?s=200&v=4");
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 0 18px rgba(139, 92, 246, 0.8);
-    animation: pfpPulse 4s ease-in-out infinite;
-}
-@keyframes pfpPulse {
-    0% { transform: scale(1); box-shadow: 0 0 12px rgba(139, 92, 246, 0.6); }
-    50% { transform: scale(1.05); box-shadow: 0 0 24px rgba(59, 130, 246, 0.9); }
-    100% { transform: scale(1); box-shadow: 0 0 12px rgba(139, 92, 246, 0.6); }
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%),
+                radial-gradient(circle, rgba(59,130,246,0.4), transparent 70%);
+    animation: waveMove 6s linear infinite;
+    opacity: 0.7;
 }
 
-/* Header text in banner */
-.banner-text {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-.banner-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 26px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-.banner-subtitle {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+.wave:nth-child(2) {
+    animation-duration: 9s;
+    opacity: 0.5;
 }
 
-/* Language switcher */
+.wave:nth-child(3) {
+    animation-duration: 12s;
+    opacity: 0.3;
+}
+
+@keyframes waveMove {
+    0% { transform: translate(0,0) rotate(0deg); }
+    50% { transform: translate(20%, -20%) rotate(180deg); }
+    100% { transform: translate(0,0) rotate(360deg); }
+}
+
+/* ===========================
+   LANGUAGE SWITCHER
+   =========================== */
 .lang-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
     gap: 8px;
+    z-index: 10;
 }
+
 .lang-btn {
     padding: 6px 10px;
     border-radius: 8px;
     border: 1px solid rgba(148, 163, 184, 0.6);
-    background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 55%);
+    background: rgba(255,255,255,0.05);
     color: var(--text);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
-}
-.lang-btn.active {
-    border-color: var(--accent2);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
-}
-.lang-btn:hover {
-    transform: translateY(-1px);
+    transition: 0.15s ease-out;
 }
 
-/* Main content */
+.lang-btn.active {
+    border-color: var(--accent2);
+    box-shadow: 0 0 10px rgba(59,130,246,0.6);
+}
+
+/* ===========================
+   PFP (ROUNDED SQUARE)
+   =========================== */
+.pfp-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: -75px;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+.pfp {
+    width: 100%;
+    height: 100%;
+    background-image: url("YOUR_IMAGE_HERE.png");
+    background-size: cover;
+    background-position: center top;
+    border-radius: 22px;
+    animation: pulseGlow 3s ease-in-out infinite;
+    border: 3px solid rgba(255,255,255,0.7);
+    box-shadow: 0 0 20px rgba(59,130,246,0.8);
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 14px rgba(59,130,246,0.6); }
+    50% { box-shadow: 0 0 28px rgba(139,92,246,0.9); }
+    100% { box-shadow: 0 0 14px rgba(59,130,246,0.6); }
+}
+
+/* ===========================
+   MAIN CONTENT
+   =========================== */
 .main {
-    max-width: 960px;
-    margin: 70px auto 40px auto;
+    max-width: 900px;
+    margin: 40px auto;
     padding: 0 20px;
 }
+
 .card {
     background: var(--card);
-    border-radius: 16px;
     border: 1px solid var(--border);
+    border-radius: 16px;
     padding: 22px 20px;
     margin-bottom: 18px;
 }
+
 .card-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 16px;
@@ -136,6 +162,7 @@ body {
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+
 .card-text {
     font-size: 14px;
     color: var(--muted);
@@ -143,7 +170,9 @@ body {
     margin-bottom: 10px;
 }
 
-/* Footer */
+/* ===========================
+   FOOTER
+   =========================== */
 footer {
     text-align: center;
     font-size: 11px;
@@ -158,137 +187,97 @@ footer a {
 }
 </style>
 </head>
+
 <body>
 
+<!-- ===========================
+     BANNER
+     =========================== -->
 <div class="banner">
-    <div class="banner-text">
-        <div>
-            <div class="banner-title">Melo Bot</div>
-            <div class="banner-subtitle">About • System Overview</div>
-        </div>
-        <div class="lang-switch">
-            <button class="lang-btn active" id="btn-de">DE</button>
-            <button class="lang-btn" id="btn-en">EN</button>
-        </div>
-    </div>
-    <div class="pfp-wrapper">
-        <div class="pfp"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" id="btn-de">DE</button>
+        <button class="lang-btn" id="btn-en">EN</button>
     </div>
 </div>
 
+<!-- ===========================
+     PFP
+     =========================== -->
+<div class="pfp-wrapper">
+    <div class="pfp"></div>
+</div>
+
+<!-- ===========================
+     MAIN CONTENT
+     =========================== -->
 <main class="main">
+
     <section class="card">
-        <div class="card-title" data-lang-title-de="Über Melo" data-lang-title-en="About Melo">
-            Über Melo
-        </div>
+        <div class="card-title" data-title-de="Über Melo" data-title-en="About Melo">Über Melo</div>
+
         <div class="card-text" data-lang="de">
-            Melo ist ein moderner, funktionsreicher Discord‑Bot mit Fokus auf Moderation, Utility und einem
-            klaren, futuristischen Design. Ziel ist es, Server‑Teams zu entlasten, Abläufe zu automatisieren
-            und gleichzeitig eine saubere, intuitive Nutzererfahrung zu bieten.
-        </div>
-        <div class="card-text" data-lang="de">
-            Durch eine klare Struktur, sichere öffentliche Befehle und ein konsistentes Branding fügt sich
-            Melo nahtlos in jeden Server ein – von kleinen Communities bis hin zu großen Projekten.
+            Melo ist ein moderner Discord‑Bot mit Fokus auf Moderation, Utility und einem klaren,
+            futuristischen Design. Ziel ist es, Server‑Teams zu entlasten und Abläufe zu automatisieren.
         </div>
 
         <div class="card-text" data-lang="en" style="display:none;">
-            Melo is a modern, feature‑rich Discord bot focused on moderation, utility, and a clean,
-            futuristic design. Its goal is to support server teams, automate workflows, and provide a
-            smooth, intuitive user experience.
-        </div>
-        <div class="card-text" data-lang="en" style="display:none;">
-            With a clear structure, safe public commands, and consistent branding, Melo integrates
-            seamlessly into any server – from small communities to large projects.
+            Melo is a modern Discord bot focused on moderation, utility, and a clean futuristic design.
+            Its goal is to support server teams and automate workflows.
         </div>
     </section>
 
     <section class="card">
-        <div class="card-title" data-lang-title-de="Funktionen & Fokus" data-lang-title-en="Features & Focus">
-            Funktionen & Fokus
-        </div>
+        <div class="card-title" data-title-de="Funktionen" data-title-en="Features">Funktionen</div>
 
         <div class="card-text" data-lang="de">
-            • Zuverlässige Moderations‑Tools  
-            • Nützliche Utility‑Befehle  
-            • Klare Status‑ und Wartungs‑Systeme  
-            • Fokus auf Sicherheit und Transparenz
-        </div>
-        <div class="card-text" data-lang="de">
-            Melo wird kontinuierlich weiterentwickelt, um neue Funktionen, bessere Stabilität und
-            ein noch stärkeres Erlebnis für Nutzer und Admins zu bieten.
+            • Moderation<br>
+            • Utility<br>
+            • Status‑System<br>
+            • Wartungs‑Modus<br>
+            • Saubere öffentliche Befehle
         </div>
 
         <div class="card-text" data-lang="en" style="display:none;">
-            • Reliable moderation tools  
-            • Useful utility commands  
-            • Clear status and maintenance systems  
-            • Focus on safety and transparency
-        </div>
-        <div class="card-text" data-lang="en" style="display:none;">
-            Melo is continuously evolving to deliver new features, better stability, and an even stronger
-            experience for both users and admins.
+            • Moderation<br>
+            • Utility<br>
+            • Status system<br>
+            • Maintenance mode<br>
+            • Clean public commands
         </div>
     </section>
 
-    <section class="card">
-        <div class="card-title" data-lang-title-de="Vision" data-lang-title-en="Vision">
-            Vision
-        </div>
-
-        <div class="card-text" data-lang="de">
-            Die Vision hinter Melo ist es, mehr als nur ein Bot zu sein: Melo soll sich wie ein
-            eigenständiges System anfühlen – mit eigener Identität, klarer Rolle im Server und
-            einem durchdachten, konsistenten Auftritt.
-        </div>
-        <div class="card-text" data-lang="de">
-            Jede Seite, jedes Feature und jede Animation ist darauf ausgelegt, dieses Gefühl zu
-            unterstützen und Melo als „lebendiges“ System erlebbar zu machen.
-        </div>
-
-        <div class="card-text" data-lang="en" style="display:none;">
-            The vision behind Melo is to be more than just a bot: Melo should feel like a standalone
-            system – with its own identity, a clear role on the server, and a thoughtful, consistent
-            presence.
-        </div>
-        <div class="card-text" data-lang="en" style="display:none;">
-            Every page, feature, and animation is designed to support that feeling and make Melo
-            feel like a “living” system.
-        </div>
-    </section>
 </main>
 
 <footer>
-    Back to main: <a href="/">z3p-z.github.io</a>
+    Back to home: <a href="/">z3p-z.github.io</a>
 </footer>
 
 <script>
-const btnDe = document.getElementById('btn-de');
-const btnEn = document.getElementById('btn-en');
+const btnDe = document.getElementById("btn-de");
+const btnEn = document.getElementById("btn-en");
 
-btnDe.addEventListener('click', () => switchLang('de'));
-btnEn.addEventListener('click', () => switchLang('en'));
+btnDe.onclick = () => switchLang("de");
+btnEn.onclick = () => switchLang("en");
 
 function switchLang(lang) {
-    document.querySelectorAll('[data-lang]').forEach(el => {
-        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display = el.getAttribute("data-lang") === lang ? "block" : "none";
     });
 
-    document.querySelectorAll('[data-lang-title-de]').forEach(el => {
-        const de = el.getAttribute('data-lang-title-de');
-        const en = el.getAttribute('data-lang-title-en');
-        el.textContent = lang === 'de' ? de : en;
+    document.querySelectorAll("[data-title-de]").forEach(el => {
+        el.textContent = lang === "de"
+            ? el.getAttribute("data-title-de")
+            : el.getAttribute("data-title-en");
     });
 
-    if (lang === 'de') {
-        btnDe.classList.add('active');
-        btnEn.classList.remove('active');
-        document.documentElement.lang = 'de';
-    } else {
-        btnEn.classList.add('active');
-        btnDe.classList.remove('active');
-        document.documentElement.lang = 'en';
-    }
+    btnDe.classList.toggle("active", lang === "de");
+    btnEn.classList.toggle("active", lang === "en");
 }
 </script>
+
 </body>
 </html>
