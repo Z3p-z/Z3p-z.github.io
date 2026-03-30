@@ -5,6 +5,7 @@
 <title>Melo Bot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
 <script src="/config.js"></script>
 <script>
 if (
@@ -24,23 +25,87 @@ if (
     --accent: #8b5cf6;
     --accent2: #3b82f6;
     --border: rgba(148, 163, 184, 0.5);
-    --card: rgba(15, 23, 42, 0.9);
+    --card: rgba(15, 23, 42, 0.92);
 }
 
+/* Reset */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+/* Body */
 body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
     color: var(--text);
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Particle background */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+/* Floating hologram logo */
+.holo-logo {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    background: url("/assets/melo.png") center/cover;
+    animation: float 4s ease-in-out infinite, glowPulse 3s ease-in-out infinite;
+    border: 2px solid rgba(59,130,246,0.6);
+    box-shadow: 0 0 20px rgba(59,130,246,0.6);
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 14px rgba(59,130,246,0.5); }
+    50% { box-shadow: 0 0 28px rgba(139,92,246,0.9); }
+    100% { box-shadow: 0 0 14px rgba(59,130,246,0.5); }
+}
+
+/* Animated neon divider */
+.divider {
+    height: 2px;
+    width: 100%;
+    margin: 20px 0;
+    background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+    animation: dividerGlow 3s ease-in-out infinite;
+}
+
+@keyframes dividerGlow {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeInUp 0.7s ease-out;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(59,130,246,0.3);
+    box-shadow: 0 0 25px rgba(59,130,246,0.25);
+    backdrop-filter: blur(6px);
 }
 
 /* Animations */
@@ -50,30 +115,24 @@ body {
 }
 
 @keyframes neonBorder {
-    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
-    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
-    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
+    0% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.35), 0 0 22px rgba(59, 130, 246, 0.18); }
+    50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.75), 0 0 40px rgba(59, 130, 246, 0.45); }
+    100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.35), 0 0 22px rgba(59, 130, 246, 0.18); }
 }
 
-/* Layout */
-.container {
-    width: 100%;
-    max-width: 900px;
-    animation: fadeInUp 0.7s ease-out;
-}
-
+/* Header */
 .header {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
 
 .title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
+    font-size: 34px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .subtitle {
@@ -83,15 +142,41 @@ body {
     text-transform: uppercase;
 }
 
+/* Language switch */
+.lang-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.lang-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(148,163,184,0.5);
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.15s ease-out;
+}
+
+.lang-btn.active {
+    border-color: var(--accent2);
+    box-shadow: 0 0 10px rgba(59,130,246,0.6);
+}
+
 /* Card */
 .card {
     background: var(--card);
-    border-radius: 16px;
+    border-radius: 18px;
     border: 1px solid var(--border);
-    padding: 24px 22px;
+    padding: 28px 24px;
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
-    gap: 20px;
+    gap: 24px;
     animation: neonBorder 3.5s ease-in-out infinite;
 }
 
@@ -101,28 +186,28 @@ body {
     letter-spacing: 0.16em;
     color: var(--accent2);
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .card-text {
     font-size: 15px;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* Links */
 .link-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
+    gap: 12px;
 }
 
 .link-btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 9px 12px;
-    border-radius: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
     border: 1px solid rgba(148, 163, 184, 0.5);
     color: var(--text);
     text-decoration: none;
@@ -134,60 +219,105 @@ body {
 }
 
 .link-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--accent2);
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 14px rgba(59, 130, 246, 0.55);
 }
 
 /* Footer */
 footer {
-    margin-top: 22px;
+    margin-top: 26px;
     text-align: center;
     font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
+
 @media (max-width: 720px) {
     .card {
         grid-template-columns: 1fr;
+        padding: 22px 18px;
     }
 }
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
+    <div class="holo-logo"></div>
+
     <header class="header">
         <div class="title">Melo Bot</div>
         <div class="subtitle">Smart • Fast • Reliable</div>
     </header>
 
+    <div class="lang-switch">
+        <button class="lang-btn active" id="btn-de">DE</button>
+        <button class="lang-btn" id="btn-en">EN</button>
+    </div>
+
+    <div class="divider"></div>
+
     <main class="card">
         <section>
-            <div class="card-left-title">Overview</div>
-            <p class="card-text">
-                Melo is a modern, multi‑purpose Discord bot with a clean Code.  
-                Focused on reliability, safety and a premium user experience, Melo powers your server with
-                smart utilities, moderation and more.
+            <div class="card-left-title" data-title-de="Überblick" data-title-en="Overview">Überblick</div>
+            <p class="card-text" data-lang="de">
+                Melo ist ein moderner, vielseitiger Discord‑Bot mit sauberem Code.
+                Fokus auf Zuverlässigkeit, Sicherheit und einer hochwertigen Nutzererfahrung.
+                Melo unterstützt deinen Server mit intelligenten Tools, Moderation und mehr.
+            </p>
+            <p class="card-text" data-lang="en" style="display:none;">
+                Melo is a modern, versatile Discord bot with clean code.
+                Focused on reliability, safety, and a premium user experience.
+                Melo powers your server with intelligent tools, moderation, and more.
             </p>
         </section>
+
         <aside>
-            <div class="card-left-title">Navigation</div>
+            <div class="card-left-title" data-title-de="Navigation" data-title-en="Navigation">Navigation</div>
             <div class="link-grid">
-                <a class="link-btn" href="/z3p-z.github.io/">This Site</a>
+                <a class="link-btn" href="/">Home</a>
                 <a class="link-btn" href="/Z3phyr/">Z3phyr</a>
                 <a class="link-btn" href="/moritz/">Moritz</a>
                 <a class="link-btn" href="/dsgvo/">DSGVO</a>
                 <a class="link-btn" href="/status/">Status</a>
                 <a class="link-btn" href="/commands/">Commands</a>
                 <a class="link-btn" href="/feedback/">Feedback</a>
-                <a class="link-btn" href="/faq/">FaQ</a>
+                <a class="link-btn" href="/faq/">FAQ</a>
                 <a class="link-btn" href="/about/">About</a>
             </div>
         </aside>
     </main>
 
     <footer>© 2026 Melo Bot</footer>
+
 </div>
+
+<script>
+const btnDe = document.getElementById("btn-de");
+const btnEn = document.getElementById("btn-en");
+
+btnDe.onclick = () => switchLang("de");
+btnEn.onclick = () => switchLang("en");
+
+function switchLang(lang) {
+    document.querySelectorAll("[data-lang]").forEach(el => {
+        el.style.display = el.getAttribute("data-lang") === lang ? "block" : "none";
+    });
+
+    document.querySelectorAll("[data-title-de]").forEach(el => {
+        el.textContent = lang === "de"
+            ? el.getAttribute("data-title-de")
+            : el.getAttribute("data-title-en");
+    });
+
+    btnDe.classList.toggle("active", lang === "de");
+    btnEn.classList.toggle("active", lang === "en");
+}
+</script>
+
 </body>
 </html>
