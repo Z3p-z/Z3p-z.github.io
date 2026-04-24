@@ -1,16 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecting to Z3phyr...</title>
+<meta charset="UTF-8">
+<title>MELO SYSTEM | About the Core</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg: #030005;
+        --card: rgba(15, 10, 25, 0.7);
+        --accent: #8b5cf6;
+        --accent-glow: rgba(139, 92, 246, 0.4);
+        --blue: #3b82f6;
+        --text: #ffffff;
+        --muted: #888;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    /* Background FX */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at 50% 100%, #1e0a3d 0%, transparent 50%);
+        z-index: -1;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+
+    .back-nav {
+        margin-bottom: 40px;
+    }
+
+    .back-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 12px;
+        letter-spacing: 2px;
+        transition: 0.3s;
+    }
+
+    .back-link:hover { color: var(--text); text-shadow: 0 0 10px var(--accent); }
+
+    header { border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 60px; }
     
-    <meta http-equiv="refresh" content="0; url=https://z3p-z.github.io" />
-    
-    <script>
-        window.location.replace("https://z3p-z.github.io");
-    </script>
+    h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.5rem;
+        margin: 0;
+        letter-spacing: 5px;
+    }
+
+    .subtitle { color: var(--muted); text-transform: uppercase; font-size: 14px; letter-spacing: 3px; }
+
+    /* About Section */
+    .content-box {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 24px;
+        padding: 40px;
+        backdrop-filter: blur(15px);
+        margin-bottom: 30px;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .feature-item {
+        border-top: 1px solid var(--accent);
+        padding-top: 15px;
+    }
+
+    .feature-item h3 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 14px;
+        color: var(--accent);
+        margin-bottom: 10px;
+    }
+
+    .feature-item p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
+    /* System Spec Badge */
+    .spec-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(139, 92, 246, 0.1);
+        border: 1px solid var(--accent-glow);
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-size: 11px;
+        color: var(--accent);
+        margin-bottom: 20px;
+    }
+
+    .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent);
+        animation: pulse-kf 2s infinite;
+    }
+
+    @keyframes pulse-kf {
+        0% { opacity: 1; }
+        50% { opacity: 0.4; }
+        100% { opacity: 1; }
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 80px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+</style>
 </head>
-<body style="background-color: #05010a; color: #e5e5e5; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <p>Redirecting to Main Site... <a href="https://z3p-z.github.io" style="color: #8b5cf6;">Click here</a> if nothing happens.</p>
+<body>
+
+<div class="container">
+    <nav class="back-nav">
+        <a href="index.html" class="back-link">// Zurück</a>
+    </nav>
+
+    <header>
+        <div class="spec-badge"><div class="pulse"></div> SYSTEM_ACTIVE v3.0</div>
+        <p class="subtitle">Information Repository</p>
+        <h1>ABOUT_MELO</h1>
+    </header>
+
+    <main>
+        <section class="content-box">
+            <h2 style="font-family:'Orbitron'; font-size: 18px; margin-bottom: 20px;">PROJECT_INITIATIVE</h2>
+            <p>
+                Das <strong>MELO SYSTEM</strong> ist kein gewöhnlicher WhatsApp-Bot. Es ist eine hochperformante Schnittstelle, 
+                die entwickelt wurde, um Kommunikation auf ein neues Level zu heben. Ursprünglich als privates Projekt 
+                konzipiert.
+            </p>
+            
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>FUN_SYSTEM</h3>
+                    <p>Ein spassiges Abendteuer mit Melo Fun!</p>
+                </div>
+                <div class="feature-item">
+                    <h3>ELITE_SECURITY</h3>
+                    <p>Kick, Warn und Ban system für eure Gruppen, auf bessere Art. (Beta)</p>
+                </div>
+                <div class="feature-item">
+                    <h3>LOW_LATENCY</h3>
+                    <p>Optimiertes Baileys-Framework für Reaktionszeiten im Sekundenbereich.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-box">
+            <h2 style="font-family:'Orbitron'; font-size: 18px; margin-bottom: 20px;">Wir von Melo:</h2>
+            <p style="color: var(--muted); font-style: italic;">
+                "Wir von Melo halten, dass die Technologie hinter Melo erstaunend ist."
+            </p>
+            <p style="margin-top: 15px;">
+                Melo ist mehr als ein Hobby - Melo ist bewegung.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 MELO SYSTEM // DESIGNED BY Z3PHYR
+    </footer>
+</div>
+
 </body>
 </html>
