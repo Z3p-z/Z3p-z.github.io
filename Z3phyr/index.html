@@ -1,120 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Z3phyr • Melo Team</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-<script src="/config.js"></script>
-<script>
-if (
-    MAINTENANCE_MODE &&
-    !location.pathname.startsWith("/maintenance") &&
-    !location.pathname.startsWith("/maintenance-admin")
-) {
-    location.href = "/maintenance";
-}
-</script>
-<style>
-:root {
-    --bg: #05010a;
-    --text: #e5e5e5;
-    --muted: #9ca3af;
-    --accent: #8b5cf6;
-    --accent2: #3b82f6;
-    --border: rgba(148, 163, 184, 0.5);
-    --card: rgba(15, 23, 42, 0.9);
-}
-* { box-sizing: border-box; }
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-}
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes neonBorder {
-    0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
-    50% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.8), 0 0 32px rgba(59, 130, 246, 0.5); }
-    100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 18px rgba(59, 130, 246, 0.2); }
-}
-.container {
-    width: 100%;
-    max-width: 720px;
-    animation: fadeInUp 0.7s ease-out;
-}
-.header {
-    text-align: center;
-    margin-bottom: 24px;
-}
-.title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-}
-.subtitle {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-}
-.card {
-    background: var(--card);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    padding: 22px 20px;
-    animation: neonBorder 3.5s ease-in-out infinite;
-}
-.card-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.16em;
-    color: var(--accent2);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-.card-text {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.6;
-}
-footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Redirecting to Z3phyr...</title>
+    
+    <meta http-equiv="refresh" content="0; url=https://z3p-z.github.io" />
+    
+    <script>
+        window.location.replace("https://z3p-z.github.io");
+    </script>
 </head>
-<body>
-<div class="container">
-    <header class="header">
-        <div class="title">Z3phyr</div>
-        <div class="subtitle">Lead • Melo Project</div>
-    </header>
-
-    <main class="card">
-        <div class="card-title">About</div>
-        <p class="card-text">
-            Z3phyr is responsible for the core architecture, design direction and long‑term vision of the Melo bot.
-            From infrastructure decisions to UX details, Z3phyr keeps the project focused, stable and future‑proof.
-        </p>
-    </main>
-
-    <footer>Back to home: <a href="/" style="color:var(--accent2); text-decoration:none;">z3p-z.github.io</a></footer>
-</div>
+<body style="background-color: #05010a; color: #e5e5e5; font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <p>Redirecting to Main Site... <a href="https://z3p-z.github.io" style="color: #8b5cf6;">Click here</a> if nothing happens.</p>
 </body>
 </html>

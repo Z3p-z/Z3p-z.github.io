@@ -1,21 +1,11 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Melo Bot</title>
+<title>Melo Team — System Maintenance</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-<script src="/config.js"></script>
-<script>
-if (
-    MAINTENANCE_MODE &&
-    !location.pathname.startsWith("/maintenance") &&
-    !location.pathname.startsWith("/maintenance-admin")
-) {
-    location.href = "/maintenance";
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -24,300 +14,124 @@ if (
     --muted: #9ca3af;
     --accent: #8b5cf6;
     --accent2: #3b82f6;
-    --border: rgba(148, 163, 184, 0.5);
-    --card: rgba(15, 23, 42, 0.92);
+    --border: rgba(148, 163, 184, 0.35);
+    --card: rgba(15, 23, 42, 0.9);
 }
 
-/* Reset */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Body */
 body {
+    margin: 0;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
     color: var(--text);
-    min-height: 100vh;
-    padding: 40px 20px;
-    position: relative;
-    overflow-x: hidden;
-}
-
-/* Particle background */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity: 0.08;
-    pointer-events: none;
-}
-
-/* Floating hologram logo */
-.holo-logo {
-    width: 110px;
-    height: 110px;
-    margin: 0 auto 20px;
-    border-radius: 20px;
-    background: url("e07fece8f5b2e357ede4ccddfbf5eddc.webp") center/cover;
-    animation: float 4s ease-in-out infinite, glowPulse 3s ease-in-out infinite;
-    border: 2px solid rgba(59,130,246,0.6);
-    box-shadow: 0 0 20px rgba(59,130,246,0.6);
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-@keyframes glowPulse {
-    0% { box-shadow: 0 0 14px rgba(59,130,246,0.5); }
-    50% { box-shadow: 0 0 28px rgba(139,92,246,0.9); }
-    100% { box-shadow: 0 0 14px rgba(59,130,246,0.5); }
-}
-
-/* Animated neon divider */
-.divider {
-    height: 2px;
-    width: 100%;
-    margin: 20px 0;
-    background: linear-gradient(90deg, transparent, var(--accent2), transparent);
-    animation: dividerGlow 3s ease-in-out infinite;
-}
-
-@keyframes dividerGlow {
-    0% { opacity: 0.4; }
-    50% { opacity: 1; }
-    100% { opacity: 0.4; }
-}
-
-/* Container */
-.container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    animation: fadeInUp 0.7s ease-out;
-    border-radius: 20px;
-    padding: 20px;
-    border: 1px solid rgba(59,130,246,0.3);
-    box-shadow: 0 0 25px rgba(59,130,246,0.25);
-    backdrop-filter: blur(6px);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes neonBorder {
-    0% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.35), 0 0 22px rgba(59, 130, 246, 0.18); }
-    50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.75), 0 0 40px rgba(59, 130, 246, 0.45); }
-    100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.35), 0 0 22px rgba(59, 130, 246, 0.18); }
-}
-
-/* Header */
-.header {
     text-align: center;
-    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Sorgt dafür, dass der Footer unten bleibt */
 }
 
+/* Flex-Container, um den Inhalt mittig zu zentrieren */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Lade-Ring im Style deines Avatars */
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 999px;
+    border: 3px solid transparent;
+    border-top-color: var(--accent2);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
+    animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Titel */
 .title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 34px;
+    font-size: 32px;
     letter-spacing: 0.18em;
-    text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
 }
 
+/* Untertitel */
 .subtitle {
     font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 0.16em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-}
-
-/* Language switch */
-.lang-switch {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 18px;
-}
-
-.lang-btn {
-    padding: 6px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(148,163,184,0.5);
-    background: rgba(255,255,255,0.05);
-    color: var(--text);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.15s ease-out;
-}
-
-.lang-btn.active {
-    border-color: var(--accent2);
-    box-shadow: 0 0 10px rgba(59,130,246,0.6);
+    color: var(--accent2);
+    margin-bottom: 30px;
 }
 
 /* Card */
 .card {
     background: var(--card);
-    border-radius: 18px;
     border: 1px solid var(--border);
-    padding: 28px 24px;
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
-    gap: 24px;
-    animation: neonBorder 3.5s ease-in-out infinite;
+    border-radius: 14px;
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center; /* Zentriert für die Wartungsseite */
 }
 
-.card-left-title {
+.card-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 18px;
     letter-spacing: 0.16em;
     color: var(--accent2);
-    text-transform: uppercase;
     margin-bottom: 12px;
 }
 
 .card-text {
     font-size: 15px;
     color: var(--muted);
-    line-height: 1.65;
-}
-
-/* Links */
-.link-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-}
-
-.link-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(148, 163, 184, 0.5);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 55%);
-    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
-}
-
-.link-btn:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent2);
-    box-shadow: 0 0 14px rgba(59, 130, 246, 0.55);
+    line-height: 1.6;
 }
 
 /* Footer */
 footer {
-    margin-top: 26px;
-    text-align: center;
-    font-size: 11px;
+    padding: 20px;
+    font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-}
-
-@media (max-width: 720px) {
-    .card {
-        grid-template-columns: 1fr;
-        padding: 22px 18px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="content-wrapper">
+    <div class="spinner"></div>
+    
+    <div class="title">System Offline</div>
+    <div class="subtitle">Maintenance in progress</div>
 
-    <div class="holo-logo"></div>
-
-    <header class="header">
-        <div class="title">Melo Bot</div>
-        <div class="subtitle">Smart • Fast • Reliable</div>
-    </header>
-
-    <div class="lang-switch">
-        <button class="lang-btn active" id="btn-de">DE</button>
-        <button class="lang-btn" id="btn-en">EN</button>
+    <div class="card">
+        <div class="card-title">Status Update</div>
+        <div class="card-text">
+            We are currently upgrading our systems to improve your experience.<br><br>
+            Please check back later. Melo will be online shortly.
+        </div>
     </div>
-
-    <div class="divider"></div>
-
-    <main class="card">
-        <section>
-            <div class="card-left-title" data-title-de="Überblick" data-title-en="Overview">Überblick</div>
-            <p class="card-text" data-lang="de">
-                Melo ist ein moderner, vielseitiger Discord‑Bot mit sauberem Code.
-                Fokus auf Zuverlässigkeit, Sicherheit und einer hochwertigen Nutzererfahrung.
-                Melo unterstützt deinen Server mit intelligenten Tools, Moderation und mehr.
-            </p>
-            <p class="card-text" data-lang="en" style="display:none;">
-                Melo is a modern, versatile Discord bot with clean code.
-                Focused on reliability, safety, and a premium user experience.
-                Melo powers your server with intelligent tools, moderation, and more.
-            </p>
-        </section>
-
-        <aside>
-            <div class="card-left-title" data-title-de="Navigation" data-title-en="Navigation">Navigation</div>
-            <div class="link-grid">
-                <a class="link-btn" href="/">Home</a>
-                <a class="link-btn" href="/Z3phyr/">Z3phyr</a>
-                <a class="link-btn" href="/moritz/">Moritz</a>
-                <a class="link-btn" href="/dsgvo/">DSGVO</a>
-                <a class="link-btn" href="/status/">Status</a>
-                <a class="link-btn" href="/commands/">Commands</a>
-                <a class="link-btn" href="/feedback/">Feedback</a>
-                <a class="link-btn" href="/faq/">FAQ</a>
-                <a class="link-btn" href="/about/">About</a>
-            </div>
-        </aside>
-    </main>
-
-    <footer>© 2026 Melo Bot</footer>
-
 </div>
 
-<script>
-const btnDe = document.getElementById("btn-de");
-const btnEn = document.getElementById("btn-en");
-
-btnDe.onclick = () => switchLang("de");
-btnEn.onclick = () => switchLang("en");
-
-function switchLang(lang) {
-    document.querySelectorAll("[data-lang]").forEach(el => {
-        el.style.display = el.getAttribute("data-lang") === lang ? "block" : "none";
-    });
-
-    document.querySelectorAll("[data-title-de]").forEach(el => {
-        el.textContent = lang === "de"
-            ? el.getAttribute("data-title-de")
-            : el.getAttribute("data-title-en");
-    });
-
-    btnDe.classList.toggle("active", lang === "de");
-    btnEn.classList.toggle("active", lang === "en");
-}
-</script>
+<footer>
+    Melo Bot — Core System
+</footer>
 
 </body>
 </html>
