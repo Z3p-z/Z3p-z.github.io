@@ -1,137 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Melo Team — System Maintenance</title>
+<title>MELO SYSTEM | Official Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
 <style>
-:root {
-    --bg: #05010a;
-    --text: #e5e5e5;
-    --muted: #9ca3af;
-    --accent: #8b5cf6;
-    --accent2: #3b82f6;
-    --border: rgba(148, 163, 184, 0.35);
-    --card: rgba(15, 23, 42, 0.9);
-}
+    :root {
+        --bg: #030005;
+        --card: rgba(15, 10, 25, 0.7);
+        --accent: #8b5cf6;
+        --accent-glow: rgba(139, 92, 246, 0.4);
+        --blue: #3b82f6;
+        --text: #ffffff;
+        --muted: #888;
+    }
 
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
-    color: var(--text);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Sorgt dafür, dass der Footer unten bleibt */
-}
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        overflow-x: hidden;
+    }
 
-/* Flex-Container, um den Inhalt mittig zu zentrieren */
-.content-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+    /* Animated Glow Background */
+    body::before {
+        content: "";
+        position: fixed;
+        top: -10%; left: -10%;
+        width: 120%; height: 120%;
+        background: radial-gradient(circle at 50% 0%, #1e0a3d 0%, transparent 40%),
+                    radial-gradient(circle at 80% 80%, #0a1a3d 0%, transparent 40%);
+        z-index: -1;
+    }
 
-/* Lade-Ring im Style deines Avatars */
-.spinner {
-    width: 80px;
-    height: 80px;
-    border-radius: 999px;
-    border: 3px solid transparent;
-    border-top-color: var(--accent2);
-    border-bottom-color: var(--accent);
-    box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
-    animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-    margin-bottom: 30px;
-}
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    header { text-align: center; margin-bottom: 80px; }
+    
+    .logo {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: linear-gradient(to right, var(--accent), var(--blue));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 10px;
+        filter: drop-shadow(0 0 15px var(--accent-glow));
+    }
 
-/* Titel */
-.title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-}
+    /* Team Grid */
+    .section-title { font-family: 'Orbitron', sans-serif; text-align: center; letter-spacing: 3px; margin-bottom: 40px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
-/* Untertitel */
-.subtitle {
-    font-size: 14px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 30px;
-}
+    .card {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        backdrop-filter: blur(15px);
+        transition: 0.4s;
+    }
 
-/* Card */
-.card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 30px 20px;
-    width: 100%;
-    max-width: 500px;
-    text-align: center; /* Zentriert für die Wartungsseite */
-}
+    .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+    }
 
-.card-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.16em;
-    color: var(--accent2);
-    margin-bottom: 12px;
-}
+    .rank-tag {
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        background: rgba(255,255,255,0.05);
+    }
 
-.card-text {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.6;
-}
+    .founder { color: var(--accent); border: 1px solid var(--accent); }
+    .admin { color: var(--blue); border: 1px solid var(--blue); }
+    .mod { color: #10b981; border: 1px solid #10b981; }
 
-/* Footer */
-footer {
-    padding: 20px;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
+    /* Subdomain Links */
+    .links-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 100px; }
+    
+    .sub-link {
+        padding: 15px 30px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        color: var(--text);
+        text-decoration: none;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 12px;
+        transition: 0.3s;
+    }
+
+    .sub-link:hover { background: var(--text); color: var(--bg); }
+
+    footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; margin-top: 100px; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 10px; font-size: 12px; }
 </style>
 </head>
-
 <body>
 
-<div class="content-wrapper">
-    <div class="spinner"></div>
-    
-    <div class="title">System Offline</div>
-    <div class="subtitle">Maintenance in progress</div>
+<div class="container">
+    <header>
+        <div class="logo">MELO</div>
+        <p style="color: var(--muted); letter-spacing: 4px;">WHATSAPP BOT SYSTEM</p>
+    </header>
 
-    <div class="card">
-        <div class="card-title">Status Update</div>
-        <div class="card-text">
-            We are currently upgrading our systems to improve your experience.<br><br>
-            Please check back later. Melo will be online shortly.
+    <h2 class="section-title">DIRECTORY</h2>
+    <div class="links-container">
+        <a href="./dsgvo" class="sub-link">DSGVO / PRIVACY</a>
+        <a href="./docs" class="sub-link">DOCUMENTATION</a>
+        <a href="./status" class="sub-link">BOT STATUS</a>
+    </div>
+
+    <h2 class="section-title">CORE TEAM</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="rank-tag founder">Founder</div>
+            <div class="card-name" style="font-family:'Orbitron'; font-size: 24px;">Melo</div>
+            <p style="color: var(--muted);">Project Lead & Head of Development.</p>
+        </div>
+        <div class="card">
+            <div class="rank-tag admin">Administrator</div>
+            <div class="card-name" style="font-family:'Orbitron'; font-size: 24px;">Moritz</div>
+            <p style="color: var(--muted);">System Architecture & Server Management.</p>
+        </div>
+        <div class="card">
+            <div class="rank-tag mod">Moderator</div>
+            <div class="card-name" style="font-family:'Orbitron'; font-size: 24px;">Joshua</div>
+            <p style="color: var(--muted);">Community Safety & Quality Assurance.</p>
         </div>
     </div>
-</div>
 
-<footer>
-    Melo Bot — Core System
-</footer>
+    <footer>
+        <a href="./dsgvo">DSGVO</a> | <a href="https://github.com/z3p-z">GITHUB</a>
+        <p style="color: var(--muted); margin-top: 20px;">&copy; 2026 MELO TEAM</p>
+    </footer>
+</div>
 
 </body>
 </html>
