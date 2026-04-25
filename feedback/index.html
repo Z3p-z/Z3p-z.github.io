@@ -2,15 +2,201 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting to Z3phyr...</title>
-    
-    <meta http-equiv="refresh" content="0; url=https://z3p-z.github.io" />
-    
-    <script>
-        window.location.replace("https://z3p-z.github.io");
-    </script>
+    <title>MELO SYSTEM | Send Feedback</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030005;
+            --card: rgba(15, 10, 25, 0.7);
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --blue: #3b82f6;
+            --text: #ffffff;
+            --muted: #888;
+            --green: #10b981;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, #1e0a3d 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 60px 20px; flex: 1; }
+
+        /* Navigation Style matching Index */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-mini {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--accent), var(--blue));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        /* Form Card */
+        .feedback-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        label {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        textarea { min-height: 120px; resize: none; }
+
+        .btn-send {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--accent-glow);
+        }
+
+        /* Logic Styles */
+        #success {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--green);
+            color: var(--green);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .back-btn {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 11px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { color: var(--accent); }
+    </style>
 </head>
-<body style="background-color: #05010a; color: #e5e5e5; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <p>Redirecting to Main Site... <a href="https://z3p-z.github.io" style="color: #8b5cf6;">Click here</a> if nothing happens.</p>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo-mini">MELO</a>
+        <div style="font-size: 10px; color: var(--muted); letter-spacing: 1px;">FEEDBACK_PORTAL</div>
+    </nav>
+
+    <div class="feedback-card">
+        <h2 class="section-title">SEND FEEDBACK</h2>
+        
+        <div class="form-group">
+            <label for="name">USER IDENTITY</label>
+            <input type="text" id="name" placeholder="Anonymous">
+        </div>
+
+        <div class="form-group">
+            <label for="message">TRANSMISSION DATA</label>
+            <textarea id="message" placeholder="Type your message here..."></textarea>
+        </div>
+
+        <button class="btn-send" onclick="sendFeedback()">EXECUTE SEND</button>
+
+        <div id="success">FEEDBACK TRANSMITTED SUCCESSFULLY</div>
+    </div>
+
+    <center>
+        <a href="index.html" class="back-btn">← RETURN TO SYSTEM HUB</a>
+    </center>
+</div>
+
+<div class="footer">
+    &copy; 2026 MELO SYSTEM. ALL RIGHTS RESERVED.
+</div>
+
+<script src="send.js"></script>
+
 </body>
 </html>
