@@ -1,16 +1,434 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting to Z3phyr...</title>
-    
-    <meta http-equiv="refresh" content="0; url=https://z3p-z.github.io" />
-    
-    <script>
-        window.location.replace("https://z3p-z.github.io");
-    </script>
+    <title>MELO SYSTEM | FAQ Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030005;
+            --card: rgba(15, 10, 25, 0.7);
+            --card-hover: rgba(25, 18, 40, 0.9);
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --blue: #3b82f6;
+            --text: #ffffff;
+            --muted: #9ca3af;
+            --green: #10b981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, #1e0a3d 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, #0a1a3d 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            flex: 1; 
+            width: 100%;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-mini {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--accent), var(--blue));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 2px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: var(--text);
+            text-align: center;
+        }
+
+        /* FAQ Accordion List */
+        .faq-list { margin-bottom: 60px; }
+
+        .faq-item {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            background: var(--card-hover);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent);
+        }
+
+        .faq-question::after {
+            content: '▼';
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        .faq-answer {
+            display: none; /* Controlled by JS toggleFAQ */
+            padding: 0 20px 20px 20px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            border-top: 1px solid transparent;
+        }
+
+        /* Forms Grid Setup */
+        .forms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .form-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: white;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+
+        label {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            color: var(--muted);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        textarea { resize: vertical; min-height: 80px; }
+        
+        /* Larger textarea for answer */
+        #aText { min-height: 120px; }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+
+        /* Success Messages */
+        .success-msg {
+            display: none; /* Controlled by JS */
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--green);
+            color: var(--green);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 11px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .back-btn {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 12px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { color: var(--accent); }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .forms-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-<body style="background-color: #05010a; color: #e5e5e5; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <p>Redirecting to Main Site... <a href="https://z3p-z.github.io" style="color: #8b5cf6;">Click here</a> if nothing happens.</p>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <nav>
+        <a href="index.html" class="logo-mini">MELO</a>
+        <div class="nav-tag">FAQ_PORTAL</div>
+    </nav>
+
+    <!-- FAQ Accordion List -->
+    <h2 class="section-title">HÄUFIG GESTELLTE FRAGEN</h2>
+    <div class="faq-list">
+        <!-- Beispiel FAQ 1 -->
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">Was ist das MELO System?</div>
+            <div class="faq-answer">Das MELO System ist eine hochmoderne, automatisierte WhatsApp-Bot-Plattform, die für Skalierbarkeit und schnelles Kommando-Processing entwickelt wurde.</div>
+        </div>
+        
+        <!-- Beispiel FAQ 2 -->
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">Wie lange dauert die Einrichtung?</div>
+            <div class="faq-answer">Die Einrichtung dauert in der Regel nur wenige Minuten. Nach der initialen Konfiguration ist das System sofort einsatzbereit.</div>
+        </div>
+
+        <!-- Beispiel FAQ 3 -->
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">Sind meine Daten sicher?</div>
+            <div class="faq-answer">Ja, das MELO System nutzt modernste Verschlüsselungstechnologien und arbeitet DSGVO-konform, um deine Privatsphäre zu schützen.</div>
+        </div>
+    </div>
+
+    <!-- Forms Section (Grid Layout) -->
+    <h2 class="section-title">COMMUNITY WISSENSDATENBANK</h2>
+    <div class="forms-grid">
+        
+        <!-- Frage einreichen (Linke Spalte) -->
+        <div class="form-card">
+            <h3>FRAGE EINREICHEN</h3>
+            <p style="color: var(--muted); font-size: 12px; margin-bottom: 20px;">Du hast eine Frage, die oben nicht beantwortet wird? Sende sie an das Team.</p>
+            
+            <div class="form-group">
+                <label for="qName">DEIN NAME (OPTIONAL)</label>
+                <input type="text" id="qName" placeholder="Anonym">
+            </div>
+            
+            <div class="form-group">
+                <label for="qText">DEINE FRAGE *</label>
+                <textarea id="qText" placeholder="Was möchtest du wissen?"></textarea>
+            </div>
+            
+            <!-- JS Trigger: submitQuestion() -->
+            <button onclick="submitQuestion()">FRAGE ÜBERMITTELN</button>
+            <div id="qSuccess" class="success-msg">FRAGE ERFOLGREICH ÜBERMITTELT</div>
+        </div>
+
+        <!-- Antwort einreichen (Rechte Spalte) -->
+        <div class="form-card">
+            <h3 style="color: var(--blue);">ANTWORT EINREICHEN</h3>
+            <p style="color: var(--muted); font-size: 12px; margin-bottom: 20px;">Helfe der Community, indem du offene Fragen anderer Nutzer beantwortest.</p>
+            
+            <div class="form-group">
+                <label for="aName">DEIN NAME (OPTIONAL)</label>
+                <input type="text" id="aName" placeholder="Anonym">
+            </div>
+
+            <div class="form-group">
+                <label for="aQuestion">BEZUGS-FRAGE *</label>
+                <input type="text" id="aQuestion" placeholder="Auf welche Frage antwortest du?">
+            </div>
+            
+            <div class="form-group">
+                <label for="aText">DEINE ANTWORT *</label>
+                <textarea id="aText" placeholder="Deine Lösung / Antwort..."></textarea>
+            </div>
+            
+            <!-- JS Trigger: submitAnswer() -->
+            <button onclick="submitAnswer()" style="background: linear-gradient(135deg, var(--blue), #2563eb);">ANTWORT ÜBERMITTELN</button>
+            <div id="aSuccess" class="success-msg" style="border-color: var(--blue); color: var(--blue); background: rgba(59, 130, 246, 0.1);">ANTWORT ERFOLGREICH ÜBERMITTELT</div>
+        </div>
+
+    </div>
+
+    <center>
+        <a href="index.html" class="back-btn">← ZURÜCK ZUM SYSTEM HUB</a>
+    </center>
+</div>
+
+<div class="footer">
+    &copy; 2026 MELO SYSTEM. ALL RIGHTS RESERVED.
+</div>
+
+<script>
+// -----------------------------
+// Melo FAQ Webhook System
+// -----------------------------
+
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1487902721825570906/om_PC-CGePFNZZpNTptOeD3WIFSvgogFlzkul0Sdya5Wep8AMyXFVy_CRMzZhh2dfVs1";
+
+// Toggle FAQ answers
+function toggleFAQ(item) {
+    const answer = item.querySelector(".faq-answer");
+    answer.style.display = answer.style.display === "block" ? "none" : "block";
+}
+
+// Submit Question
+async function submitQuestion() {
+    const name = document.getElementById("qName").value.trim() || "Anonymous";
+    const question = document.getElementById("qText").value.trim();
+    if (!question) return;
+
+    const payload = {
+        username: "Melo FAQ",
+        embeds: [
+            {
+                title: "New Question Submitted",
+                color: 0x8b5cf6,
+                fields: [
+                    { name: "From", value: name, inline: true },
+                    { name: "Question", value: question }
+                ],
+                footer: { text: "Melo FAQ System" },
+                timestamp: new Date().toISOString()
+            }
+        ]
+    };
+
+    await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    document.getElementById("qText").value = "";
+    document.getElementById("qName").value = "";
+    document.getElementById("qSuccess").style.display = "block";
+
+    setTimeout(() => {
+        document.getElementById("qSuccess").style.display = "none";
+    }, 3000);
+}
+
+// Submit Answer
+async function submitAnswer() {
+    const name = document.getElementById("aName").value.trim() || "Anonymous";
+    const question = document.getElementById("aQuestion").value.trim();
+    const answer = document.getElementById("aText").value.trim();
+    if (!question || !answer) return;
+
+    const payload = {
+        username: "Melo FAQ",
+        embeds: [
+            {
+                title: "New Answer Submitted",
+                color: 0x3b82f6,
+                fields: [
+                    { name: "From", value: name, inline: true },
+                    { name: "Question", value: question },
+                    { name: "Answer", value: answer }
+                ],
+                footer: { text: "Melo FAQ System" },
+                timestamp: new Date().toISOString()
+            }
+        ]
+    };
+
+    await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    document.getElementById("aName").value = "";
+    document.getElementById("aQuestion").value = "";
+    document.getElementById("aText").value = "";
+    document.getElementById("aSuccess").style.display = "block";
+
+    setTimeout(() => {
+        document.getElementById("aSuccess").style.display = "none";
+    }, 3000);
+}
+</script>
+
 </body>
 </html>
