@@ -1,16 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecting to Z3phyr...</title>
-    
-    <meta http-equiv="refresh" content="0; url=https://z3p-z.github.io" />
-    
-    <script>
-        window.location.replace("https://z3p-z.github.io");
-    </script>
+<meta charset="UTF-8">
+<title>Melo Team — System Maintenance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #05010a;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent2: #3b82f6;
+    --border: rgba(148, 163, 184, 0.35);
+    --card: rgba(15, 23, 42, 0.9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0b0218 0, #05010a 55%);
+    color: var(--text);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Sorgt dafür, dass der Footer unten bleibt */
+}
+
+/* Flex-Container, um den Inhalt mittig zu zentrieren */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Lade-Ring im Style deines Avatars */
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 999px;
+    border: 3px solid transparent;
+    border-top-color: var(--accent2);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
+    animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Titel */
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+/* Untertitel */
+.subtitle {
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 30px;
+}
+
+/* Card */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center; /* Zentriert für die Wartungsseite */
+}
+
+.card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    color: var(--accent2);
+    margin-bottom: 12px;
+}
+
+.card-text {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+</style>
 </head>
-<body style="background-color: #05010a; color: #e5e5e5; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <p>Redirecting to Main Site... <a href="https://z3p-z.github.io" style="color: #8b5cf6;">Click here</a> if nothing happens.</p>
+
+<body>
+
+<div class="content-wrapper">
+    <div class="spinner"></div>
+    
+    <div class="title">System Offline</div>
+    <div class="subtitle">Maintenance in progress</div>
+
+    <div class="card">
+        <div class="card-title">Status Update</div>
+        <div class="card-text">
+            We are currently upgrading our systems to improve your experience.<br><br>
+            Please check back later. Melo will be online shortly.
+        </div>
+    </div>
+</div>
+
+<footer>
+    Melo Bot — Core System
+</footer>
+
 </body>
 </html>
