@@ -1,8 +1,9 @@
 // -----------------------------
-//  Melo Feedback Webhook Sender
+// Melo Feedback Webhook Sender (Secure Version)
 // -----------------------------
 
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1487719376072474814/TQdlnkl-aoXBFVlt7s8WkmB-D_tvWmFqkptP5NZ3xGVSN6iGA4HO0Jiz8Aanm_3i0SdV";
+// TRAGE HIER DEINE CLOUDFLARE WORKER URL EIN
+const WORKER_URL = "https://backend.jannik263.workers.dev";
 
 async function sendFeedback() {
     const name = document.getElementById("name").value.trim() || "Anonymous";
@@ -11,6 +12,7 @@ async function sendFeedback() {
     if (!message) return;
 
     const payload = {
+        target: "feedback", // Sagt dem Worker: Nutze den Feedback-Webhook
         username: "Melo Feedback",
         embeds: [
             {
@@ -27,11 +29,13 @@ async function sendFeedback() {
     };
 
     try {
-        await fetch(WEBHOOK_URL, {
+        const response = await fetch(WORKER_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
+
+        if (!response.ok) throw new Error("Worker Error");
 
         // Show success message
         const success = document.getElementById("success");
@@ -47,7 +51,7 @@ async function sendFeedback() {
         }, 3000);
 
     } catch (err) {
-        alert("Error sending feedback.");
+        alert("Error sending feedback. Make sure the Worker is configured correctly.");
         console.error(err);
     }
 }

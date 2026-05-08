@@ -1,8 +1,9 @@
 // -----------------------------
-// Melo FAQ Webhook System
+// Melo FAQ Webhook System (Secure Version)
 // -----------------------------
 
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1487902721825570906/om_PC-CGePFNZZpNTptOeD3WIFSvgogFlzkul0Sdya5Wep8AMyXFVy_CRMzZhh2dfVs1";
+// TRAGE HIER DEINE CLOUDFLARE WORKER URL EIN
+const WORKER_URL = "https://backend.jannik263.workers.dev";
 
 // Toggle FAQ answers
 function toggleFAQ(item) {
@@ -17,6 +18,7 @@ async function submitQuestion() {
     if (!question) return;
 
     const payload = {
+        target: "faq", // Sagt dem Worker, welchen Webhook er nutzen soll
         username: "Melo FAQ",
         embeds: [
             {
@@ -32,19 +34,24 @@ async function submitQuestion() {
         ]
     };
 
-    await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
+    try {
+        await fetch(WORKER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
 
-    document.getElementById("qText").value = "";
-    document.getElementById("qName").value = "";
-    document.getElementById("qSuccess").style.display = "block";
+        document.getElementById("qText").value = "";
+        document.getElementById("qName").value = "";
+        document.getElementById("qSuccess").style.display = "block";
 
-    setTimeout(() => {
-        document.getElementById("qSuccess").style.display = "none";
-    }, 3000);
+        setTimeout(() => {
+            document.getElementById("qSuccess").style.display = "none";
+        }, 3000);
+    } catch (err) {
+        alert("Fehler beim Senden der Frage.");
+        console.error(err);
+    }
 }
 
 // Submit Answer
@@ -55,6 +62,7 @@ async function submitAnswer() {
     if (!question || !answer) return;
 
     const payload = {
+        target: "faq", // Auch hier das Ziel FAQ
         username: "Melo FAQ",
         embeds: [
             {
@@ -71,18 +79,23 @@ async function submitAnswer() {
         ]
     };
 
-    await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
+    try {
+        await fetch(WORKER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
 
-    document.getElementById("aName").value = "";
-    document.getElementById("aQuestion").value = "";
-    document.getElementById("aText").value = "";
-    document.getElementById("aSuccess").style.display = "block";
+        document.getElementById("aName").value = "";
+        document.getElementById("aQuestion").value = "";
+        document.getElementById("aText").value = "";
+        document.getElementById("aSuccess").style.display = "block";
 
-    setTimeout(() => {
-        document.getElementById("aSuccess").style.display = "none";
-    }, 3000);
+        setTimeout(() => {
+            document.getElementById("aSuccess").style.display = "none";
+        }, 3000);
+    } catch (err) {
+        alert("Fehler beim Senden der Antwort.");
+        console.error(err);
+    }
 }
