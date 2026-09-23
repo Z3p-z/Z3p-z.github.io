@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Library</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #090d16;
+        --card-bg: #111827;
+        --accent: #1db954;
+        --text: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: #1e293b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        transition: color 0.2s ease;
+      }
+
+      .back-btn:hover {
+        color: var(--accent);
+      }
+
+      header {
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      h1 i {
+        color: var(--accent);
+      }
+
+      .search-box {
+        margin-bottom: 2rem;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--card-bg);
+        color: var(--text);
+        font-size: 1rem;
+        outline: none;
+      }
+
+      .search-input:focus {
+        border-color: var(--accent);
+      }
+
+      .music-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .track-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .track-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent);
+      }
+
+      iframe {
+        border-radius: 12px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="../index.html" class="back-btn"
+        ><i class="fa-solid fa-arrow-left"></i> Back to Main Page</a
+      >
+
+      <header>
+        <h1><i class="fa-brands fa-spotify"></i> Music Vault</h1>
+        <p style="color: var(--text-muted); margin-top: 0.4rem">
+          Tracks and playlists I listen to.
+        </p>
+      </header>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search tracks..."
+        />
+      </div>
+
+      <div class="music-grid" id="musicGrid">
+        <div class="track-card" data-search="song name artist">
+          <iframe
+            data-testid="embed-iframe"
+            style="border-radius: 12px"
+            src="https://open.spotify.com/embed/track/6Wx88Mv6b9ofjKMKkdwOJd?utm_source=generator&si=a8187827bd3c4496"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allowfullscreen=""
+            allow="
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              fullscreen;
+              picture-in-picture;
+            "
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function (e) {
+          const query = e.target.value.toLowerCase();
+          const cards = document.querySelectorAll(".track-card");
+
+          cards.forEach((card) => {
+            const searchText = card.dataset.search
+              ? card.dataset.search.toLowerCase()
+              : "";
+            if (searchText.includes(query)) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
